@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Applications</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+            margin:0;
+        }
+
+        .header{
+            background:#007bff;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        table{
+            width:90%;
+            margin:30px auto;
+            border-collapse:collapse;
+            background:white;
+        }
+
+        th, td{
+            border:1px solid #ddd;
+            padding:12px;
+            text-align:center;
+        }
+
+        th{
+            background:#007bff;
+            color:white;
+        }
+
+        tr:nth-child(even){
+            background:#f9f9f9;
+        }
+
+        .home-btn{
+            text-align:center;
+            margin:20px;
+        }
+
+        .home-btn a{
+            background:green;
+            color:white;
+            text-decoration:none;
+            padding:10px 20px;
+            border-radius:5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>My Applications</h1>
+</div>
+
+<table>
+    <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Qualification</th>
+        <th>Resume</th>
+    </tr>
+
+    {% for application in applications %}
+    <tr>
+        <td>{{ application.fullname }}</td>
+        <td>{{ application.email }}</td>
+        <td>{{ application.phone }}</td>
+        <td>{{ application.qualification }}</td>
+        <td>
+            {% if application.resume %}
+                <a href="{{ application.resume.url }}">View Resume</a>
+            {% else %}
+                No Resume
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">No applications found.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="home-btn">
+    <a href="/">Back to Home</a>
+    <a href="{% url 'jobs' %}">Jobs</a>
+    <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+</div>
+
+</body>
+</html>
