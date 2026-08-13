@@ -121,7 +121,7 @@ def dashboard(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 
 # ---------------- MY APPLICATIONS ----------------
